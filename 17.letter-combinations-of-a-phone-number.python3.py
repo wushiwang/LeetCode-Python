@@ -58,5 +58,5 @@ class Solution:
         for a in self.nmap[digits[level]]:
             self.cur.append(a)
             self.DFS(level+1, digits)
-            self.cur.pop()
+            self.cur = self.cur[:-1]
         return
