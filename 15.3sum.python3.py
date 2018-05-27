@@ -38,6 +38,8 @@ class Solution:
         """
         nums, res, i = sorted(nums), [], 0
         while i < len(nums):
+            if nums[i] > 0:
+                break
             L, R, target = i+1, len(nums) - 1, -1 * nums[i]
             while L < R:
                 cur = nums[L] + nums[R]
