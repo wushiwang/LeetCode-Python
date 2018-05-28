@@ -42,25 +42,24 @@ class Solution:
         """
         ListNode.__lt__ = lambda self, other: self.val < other.val
 
+        lists = list(filter(lambda x: x is not None, lists))
+
         if len(lists) == 0:
             return []
 
         if len(lists) == 1:
             return lists[0]
 
-        for i in range(len(lists)):
-            if lists[i] is None:
-                lists[i] = ListNode(math.inf)
         heapq.heapify(lists)
 
         root = ListNode(-1)
         cur, res = heapq.heappop(lists), root
-        while cur.val != math.inf:
+        while True:
             res.next = cur
-            if cur.next is None:
-                heapq.heappush(lists, ListNode(math.inf))
-            else:
+            if cur.next is not None:
                 heapq.heappush(lists, cur.next)
+            if len(lists) == 0:
+                break
             cur, res = heapq.heappop(lists), res.next
 
         return root.next
