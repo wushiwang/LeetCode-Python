@@ -33,18 +33,21 @@ class Solution:
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        cur_max = nums[len(nums)-1]
         for i in range(len(nums)-1, 0, -1):
-            if nums[i-1] >= cur_max:
-                cur_max = nums[i-1]
-                j = i - 1
-                while j + 1 != len(nums):
-                    nums[j], nums[j+1] = nums[j+1], nums[j]
-                    j = j + 1
-            else:
+            if nums[i-1] < nums[i]:
+                # reverse
+                L, R = i, len(nums) - 1
+                while L < R:
+                    nums[L], nums[R] = nums[R], nums[L]
+                    L, R = L + 1, R - 1
+                # find position
                 j = i
                 while nums[j] <= nums[i-1]:
                     j = j + 1
                 nums[i-1], nums[j] = nums[j], nums[i-1]
-                break
+                return
+        L, R = 0, len(nums) - 1
+        while L < R:
+            nums[L], nums[R] = nums[R], nums[L]
+            L, R = L + 1, R - 1
         return
