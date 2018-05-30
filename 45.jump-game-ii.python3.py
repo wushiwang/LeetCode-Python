@@ -37,13 +37,10 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        if len(nums) == 1:
-            return 0
-        R, rec = 0, [0 for x in range(len(nums))]
-        for i in range(len(nums)):
-            if nums[i]+i >= len(nums)-1:
-                return rec[i]+1
-            for j in range(R+1, nums[i]+i+1):
-                rec[j] = rec[i]+1
+        L, R, res = 0, 0, 0
+        for i in range(len(nums)-1):
             R = max(R, nums[i]+i)
-        return 0
+            if i == L:
+                res += 1
+                L = R
+        return res
