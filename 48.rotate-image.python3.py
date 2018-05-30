@@ -74,7 +74,7 @@ class Solution:
         # flip by right-top to left-bottom line
         for i in range(n):
             for j in range(n-i-1):
-                matrix[i][j], matrix[n-1-j][n-1-i] = matrix[n-1-j][n-1-i], matrix[i][j]
+                matrix[i][j], matrix[~j][~i] = matrix[~j][~i], matrix[i][j]
 
         return
 
