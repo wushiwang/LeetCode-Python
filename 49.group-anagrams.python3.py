@@ -30,22 +30,6 @@
 #
 
 
-class myStr(str):
-    @property
-    def normalized(self):
-        try:
-            return self._normalized
-        except AttributeError:
-            self._normalized = ''.join(sorted(list(self)))
-        return self._normalized
-
-    def __hash__(self):
-        return hash(self.normalized)
-
-    def __eq__(self, other):
-        return self.normalized == other.normalized
-
-
 class Solution:
     def groupAnagrams(self, strs):
         """
@@ -54,7 +38,7 @@ class Solution:
         """
         dic = {}
         for s in strs:
-            ns = myStr(s)
+            ns = ''.join(sorted(list(s)))
             if ns in dic:
                 dic[ns].append(s)
             else:
