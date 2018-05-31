@@ -45,9 +45,9 @@ class Solution:
             return list()
         intervals = sorted(intervals, key=lambda x: x.start)
         res = [intervals[0]]
-        for i in range(1, len(intervals)):
-            if intervals[i].start <= res[-1].end:
-                res[-1] = Interval(res[-1].start, max(res[-1].end, intervals[i].end))
+        for x in intervals[1:]:
+            if x.start <= res[-1].end:
+                res[-1] = Interval(res[-1].start, max(res[-1].end, x.end))
             else:
-                res.append(intervals[i])
+                res.append(x)
         return res
