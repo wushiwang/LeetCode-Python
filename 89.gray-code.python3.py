@@ -44,6 +44,6 @@ class Solution:
         """
         res, cur = [0], 1
         for _ in range(n):
-            res = res + list(map(lambda x:x+cur, res[::-1]))
+            res += list(map(lambda x: x+cur, res[::-1]))
             cur <<= 1
         return res
