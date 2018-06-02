@@ -41,20 +41,16 @@ class Solution:
         :type n: int
         :rtype: void Do not return anything, modify nums1 in-place instead.
         """
-        tmp = nums1[:m]
-        i, j, c = 0, 0, 0
-        while i != m and j != n:
-            if tmp[i] <= nums2[j]:
-                nums1[c] = tmp[i]
-                i += 1
+        i, j, c = m-1, n-1, m+n-1
+        while i >= 0 and j >= 0:
+            if nums1[i] > nums2[j]:
+                nums1[c] = nums1[i]
+                i -= 1
             else:
                 nums1[c] = nums2[j]
-                j += 1
-            c += 1
-        while i != m:
-            nums1[c] = tmp[i]
-            i, c = i + 1, c + 1
-        while j != n:
+                j -= 1
+            c -= 1
+        while j >= 0:
             nums1[c] = nums2[j]
-            j, c = j + 1, c + 1
+            j, c = j - 1, c - 1
         return
