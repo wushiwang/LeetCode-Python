@@ -73,6 +73,7 @@
 # Input: s1 = "abcde", s2 = "caebd"
 # Output: false
 #
+import collections
 
 
 class Solution:
@@ -92,6 +93,14 @@ class Solution:
         if s1 == s2:
             self.dict[s1+s2] = True
             return True
+        cnt = collections.Counter()
+        for i in range(len(s1)):
+            cnt[s1[i]] += 1
+            cnt[s2[i]] -= 1
+        for i in cnt:
+            if cnt[i] != 0:
+                self.dict[s1+s2] = False
+                return False
         for i in range(1, len(s1)):
             if (self.isScramble(s1[:i], s2[:i]) and\
                     self.isScramble(s1[i:], s2[i:])) or\
