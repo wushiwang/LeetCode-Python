@@ -43,4 +43,6 @@ class Solution:
                 num += int(s[pos+i-1])
                 if num <= 255 and ((num == 0 and i == 1) or s[pos] != '0'):
                     self.DFS(level+1, s, res, cur+[s[pos:pos+i]], pos+i)
+                else:
+                    break
                 num *= 10
