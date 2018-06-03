@@ -1,4 +1,4 @@
-#
+
 # [95] Unique Binary Search Trees II
 #
 # https://leetcode.com/problems/unique-binary-search-trees-ii/description/
@@ -27,7 +27,7 @@
 # Explanation:
 # The above output corresponds to the 5 unique BST's shown below:
 #
-# ⁠  1         3     3      2      1
+# ⁠ 1         3     3      2      1
 # ⁠   \       /     /      / \      \
 # ⁠    3     2     1      1   3      2
 # ⁠   /     /       \                 \
@@ -49,6 +49,27 @@ class Solution:
         :type n: int
         :rtype: List[TreeNode]
         """
-        res, nums = [], list(range(1, n+1))
-        self.DFS(0, nums, res, 0, n-1)
-        return res
+        dp = [[None],
+              [TreeNode(1)]]
+        if n == 0:
+            return []
+        for i in range(2, n+1):
+            a, b = 0, i-1
+            dp.append([])
+            for j in range(1, i+1):
+                for x in dp[a]:
+                    for y in dp[b]:
+                        nt = TreeNode(j)
+                        nt.left = x
+                        nt.right = self.add(y, j)
+                        dp[-1].append(nt)
+                a, b = a + 1, b - 1
+        return dp[n]
+
+    def add(self, tn, v):
+        if tn is None:
+            return None
+        nt = TreeNode(tn.val + v)
+        nt.left = self.add(tn.left, v)
+        nt.right = self.add(tn.right, v)
+        return nt
