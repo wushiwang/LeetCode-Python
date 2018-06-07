@@ -33,14 +33,20 @@ class Solution:
         :rtype: List[List[str]]
         """
         res = []
-        self.DFS(s, res, [])
+        self.DFS(s, res, [], set())
         return res
 
-    def DFS(self, s, res, cur):
-        if s == s[::-1]:
+    def DFS(self, s, res, cur, dic):
+        if s in dic:
+            res.append(cur+ [s])
+        elif s == s[::-1]:
+            dic.add(s)
             res.append(cur + [s])
 
         for i in range(1, len(s)):
             L, R = s[:i], s[i:]
-            if L == L[::-1]:
-                self.DFS(R, res, cur + [L])
+            if L in dic:
+                self.DFS(R, res, cur + [L], dic)
+            elif L == L[::-1]:
+                dic.add(L)
+                self.DFS(R, res, cur + [L], dic)
