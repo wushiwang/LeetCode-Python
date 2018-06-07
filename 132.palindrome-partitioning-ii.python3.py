@@ -30,13 +30,15 @@ class Solution:
         :type s: str
         :rtype: int
         """
-        dp = [[False for x in range(len(s))] for y in range(len(s))]
+        dp = [[False for x in range(len(s))] for y in range(2)]
         min_cut = [len(s)-x-1 for x in range(len(s)+1)]
         for i in range(len(s)-1, -1, -1):
             for j in range(len(s)-1, i-1, -1):
                 if s[i] == s[j]:
-                    dp[i][j] = dp[i+1][j-1] if i+1 <= j-1 else True
-                if dp[i][j]:
+                    dp[i&1][j] = dp[(i+1)&1][j-1] if i+1 <= j-1 else True
+                else:
+                    dp[i&1][j] = False
+                if dp[i&1][j]:
                     if min_cut[j+1] + 1 < min_cut[i]:
                         min_cut[i] = min_cut[j+1] + 1
 
