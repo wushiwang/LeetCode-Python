@@ -91,7 +91,7 @@ class Solution:
             while s > 0:
                 R = R + 1 if R != len(gas)-1 else 0
                 s += cost[R]
-                if R == L-1 or R == 0 and L == len(gas)-1:
+                if R == L-1 or (R == 0 and L == len(gas)-1):
                     break
             if s >= 0:
                 return L
