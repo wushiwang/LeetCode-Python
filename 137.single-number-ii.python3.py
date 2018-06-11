@@ -43,5 +43,5 @@ class Solution:
             s = 0
             for n in nums:
                 s += (n >> i) & 1
-            res += (s % 3) << i
+            res |= (s % 3) << i
         return res if res <= 2**31-1 else res-2**32
