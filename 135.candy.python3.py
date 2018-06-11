@@ -50,17 +50,11 @@ class Solution:
         :type ratings: List[int]
         :rtype: int
         """
-        pq, candy = [(ratings[x], x) for x in range(len(ratings))], [-math.inf for x in range(len(ratings))]
-        pq = sorted(pq, key=lambda x: x[0])
-        res = 0
-        for cur in pq:
-            L, R = cur[1]-1, cur[1]+1
-            maxx = max(candy[L] if L >= 0 and ratings[L] < ratings[cur[1]] else -math.inf,\
-                       candy[R] if R < len(ratings) and ratings[R] < ratings[cur[1]] else -math.inf)
-            if maxx == -math.inf:
-                candy[cur[1]] = 1
-                res += 1
-            else:
-                candy[cur[1]] = maxx + 1
-                res += maxx + 1
-        return res
+        res = [0 for x in ratings]
+        for i in range(len(ratings)):
+            L = L + 1 if i-1 >= 0 and ratings[i] > ratings[i-1] else 1
+            res[i] = L
+        for i in range(len(ratings)-1, -1, -1):
+            R = R + 1 if i+1 < len(ratings) and ratings[i] > ratings[i+1] else 1
+            res[i] = max(res[i], R)
+        return sum(res)
