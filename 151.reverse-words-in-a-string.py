@@ -38,4 +38,4 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        return ' '.join(filter(lambda x: x!='', s.split(' ')[::-1]))
+        return ' '.join(s.split()[::-1])
