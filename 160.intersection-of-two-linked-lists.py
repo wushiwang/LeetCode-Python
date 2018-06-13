@@ -67,5 +67,4 @@ class Solution(object):
             if headA == headB:
                 return headA
             headA, headB = headA.next, headB.next
-
         return
