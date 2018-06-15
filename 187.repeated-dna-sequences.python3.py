@@ -33,21 +33,22 @@ class Solution:
         """
         if len(s) < 10:
             return []
-        use = {'A': 1, 'C': 2, 'G': 3, 'T':4}
+        use = {'A': 0, 'C': 1, 'G': 2, 'T':3}
+        mask = (1 << 20) - 1
         dic, res = dict(), []
         cur, L, R = 0, 0, 0
         while R != 9:
-            cur *= 10
-            cur += use[s[R]]
+            cur <<= 2
+            cur |= use[s[R]]
             R += 1
         while R < len(s):
-            cur *= 10
-            cur += use[s[R]]
+            cur <<= 2
+            cur |= use[s[R]]
+            cur &= mask
             if cur not in dic:
                 dic[cur] = 1
             elif dic[cur] == 1:
                 dic[cur] += 1
                 res.append(s[L:R+1])
-            cur -= use[s[L]]*1000000000
             L, R = L+1, R+1
         return res
