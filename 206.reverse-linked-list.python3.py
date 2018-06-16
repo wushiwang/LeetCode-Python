@@ -37,6 +37,8 @@ class Solution:
         :type head: ListNode
         :rtype: ListNode
         """
+        if head is None:
+            return head
         dum = ListNode(None)
         dum.next = head
         while head.next:
