@@ -51,19 +51,17 @@ class Solution:
             return 0
         if len(nums) == 1:
             return nums[0]
-        dp = [0 for n in nums]
-        dp[0] = nums[0]
-        dp[1] = max(nums[0], nums[1])
-        res_l = max(dp[0], dp[1])
+        a = nums[0]
+        b = max(nums[0], nums[1])
+        res_l = max(a, b)
         for i in range(2, len(nums)-1):
-            dp[i] = max(dp[i-1], dp[i-2]+nums[i])
-            res_l = max(res_l, dp[i])
+            a, b = b, max(b, a+nums[i])
+            res_l = max(res_l, b)
         nums = nums[::-1]
-        dp = [0 for n in nums]
-        dp[0] = nums[0]
-        dp[1] = max(nums[0], nums[1])
-        res_r = max(dp[0], dp[1])
+        a = nums[0]
+        b = max(nums[0], nums[1])
+        res_r = max(a, b)
         for i in range(2, len(nums)-1):
-            dp[i] = max(dp[i-1], dp[i-2]+nums[i])
-            res_r = max(res_r, dp[i])
+            a, b = b, max(b, a+nums[i])
+            res_r = max(res_r, b)
         return max(res_l, res_r)
