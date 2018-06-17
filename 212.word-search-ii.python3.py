@@ -72,20 +72,21 @@ class Solution:
         for i in range(len(board)):
             for j in range(len(board[0])):
                 if board[i][j] in head.chd:
-                    visited = set()
-                    visited.add((i, j))
-                    self.DFS(i, j, board, head.chd[board[i][j]], visited, res)
+                    tmp = board[i][j]
+                    board[i][j] = '#'
+                    self.DFS(i, j, board, head.chd[tmp], res)
+                    board[i][j] = tmp
         return res
 
-    def DFS(self, x, y, board, node, visited, res):
+    def DFS(self, x, y, board, node, res):
         if node.isWord:
             res.append(node.word)
             node.isWord = False
         for i in range(4):
             nx, ny = x+self.dx[i], y+self.dy[i]
             if nx >= 0 and nx < len(board) and ny >= 0 and ny < len(board[0]):
-                if (nx, ny) not in visited and board[nx][ny] in node.chd:
-                    visited.add((nx, ny))
-                    self.DFS(nx, ny, board, node.chd[board[nx][ny]],
-                             visited, res)
-                    visited.remove((nx, ny))
+                if board[nx][ny] in node.chd:
+                    tmp = board[nx][ny]
+                    board[nx][ny] = '#'
+                    self.DFS(nx, ny, board, node.chd[tmp], res)
+                    board[nx][ny] = tmp
