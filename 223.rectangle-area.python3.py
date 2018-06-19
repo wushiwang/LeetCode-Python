@@ -41,14 +41,7 @@ class Solution:
         :type H: int
         :rtype: int
         """
-        # X axis
-        if E < C and G > A:
-            X = min(C-E, G-A, min(C-A, G-E))
-        else:
-            return (C-A)*(D-B)+(G-E)*(H-F)
-        # Y axis
-        if H > B and D > F:
-            Y = min(H-B, D-F, min(D-B, H-F))
-        else:
-            return (C-A)*(D-B)+(G-E)*(H-F)
+        # Get X and Y axis convert length
+        X = min(C-E, G-A, C-A, G-E) if C > E and G > A else 0
+        Y = min(H-B, D-F, D-B, H-F) if H > B and D > F else 0
         return (C-A)*(D-B)+(G-E)*(H-F)-X*Y
