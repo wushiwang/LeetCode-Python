@@ -70,12 +70,8 @@ class Solution:
         :type q: TreeNode
         :rtype: TreeNode
         """
-        if root is None:
-            return
-        if (p.val <= root.val and q.val >= root.val) or (q.val <= root.val and p.val >= root.val):
-            return root
-        else:
-            if p.val < root.val and q.val < root.val:
-                return self.lowestCommonAncestor(root.left, p, q)
-            else:
-                return self.lowestCommonAncestor(root.right, p, q)
+        if p.val < root.val and q.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        if p.val > root.val and q.val > root.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+        return root
