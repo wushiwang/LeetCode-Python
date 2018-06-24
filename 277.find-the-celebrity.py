@@ -48,13 +48,12 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        for i in range(n):
-            flag = True
-            for j in range(n):
-                if i != j:
-                    if (not knows(j, i)) or knows(i, j):
-                        flag = False
-                        break
-            if flag:
-                return i
-        return -1
+        candidate = 0
+        for i in range(1, n):
+            if not knows(i, candidate):
+                candidate = i
+        for i in range(0, n):
+            if i != candidate:
+                if (not knows(i, candidate)) or knows(candidate, i):
+                    return -1
+        return candidate
