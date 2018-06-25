@@ -40,7 +40,6 @@ class Solution:
         for i in range(len(nums)):
             if nums[i] != 0 and i > fstZ:
                 nums[fstZ], nums[i] = nums[i], nums[fstZ]
-                j = fstZ
                 while fstZ < len(nums) and nums[fstZ] != 0:
                     fstZ += 1
                 if fstZ == len(nums):
