@@ -56,6 +56,7 @@ class Solution:
         """
         self.target = target
         self.res = []
+
         for i in range(1, len(num)+1):
             if i == 1 or num[0] != '0':
                 self.DFS(num[i:], num[:i], int(num[:i]), 0, int(num[:i]))
