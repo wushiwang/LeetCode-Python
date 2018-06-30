@@ -28,6 +28,7 @@
 
 
 class Solution:
+
     class BIT:
         def __init__(self, n):
             self.bit = [0]*(n+1)
