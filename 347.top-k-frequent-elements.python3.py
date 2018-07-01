@@ -37,6 +37,7 @@ class Solution:
                 dic[n] = 1
             else:
                 dic[n] += 1
+
         # Bucket Sort using frequency number in dic
         bucket = [set() for x in range(len(nums)+1)]
         for n in nums:
