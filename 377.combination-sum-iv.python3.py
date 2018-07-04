@@ -49,11 +49,13 @@ class Solution:
         :type target: int
         :rtype: int
         """
-        nums = set(list(filter(lambda x: x <= target, nums)))
+        nums = sorted(list(set(list(filter(lambda x: x <= target, nums)))))
         dp = [0 for x in range(target+1)]
         dp[0] = 1
         for i in range(1, target+1):
             for j in nums:
                 if j <= i:
                     dp[i] += dp[i-j]
+                else:
+                    break
         return dp[target]
