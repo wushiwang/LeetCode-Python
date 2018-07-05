@@ -62,6 +62,6 @@ class Solution:
                 if len(stack) == 0 or type(stack[-1]) is int:
                     stack.append(s[i])
                 else:
-                    stack[-1] = stack[-1] + s[i]
+                    stack[-1] += s[i]
                 i += 1
         return stack[-1] if len(stack) != 0 else ""
