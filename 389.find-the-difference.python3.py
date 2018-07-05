@@ -40,4 +40,4 @@ class Solution:
         :type t: str
         :rtype: str
         """
-        return chr(functools.reduce(operator.xor, map(ord, list(s+t))))
+        return chr(functools.reduce(operator.xor, map(ord, s+t)))
