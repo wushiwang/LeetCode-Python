@@ -57,7 +57,7 @@ class Solution:
                 bisect.insort(window, nums[i])
             else:
                 res.append(self.getMedian(window))
-                window.remove(nums[i-k])
+                window.pop(bisect.bisect_left(window, nums[i-k]))
                 bisect.insort(window, nums[i])
         res.append(self.getMedian(window))
         return res
