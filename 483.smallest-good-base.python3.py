@@ -53,8 +53,7 @@ class Solution:
         """
         # ()
         n = int(n)
-        res = n-1
-        for i in range(1, 64):
+        for i in range(63, 0, -1):
             L, R = 1, n
             while L < R - 1:
                 M = (L + R) >> 1
@@ -64,9 +63,7 @@ class Solution:
                 elif c == -1:
                     L = M
                 else:
-                    res = min(res, M)
-                    break
-        return str(res)
+                    return str(M)
 
     def check(self, n, x, m):
         p, cur = 1, 1
