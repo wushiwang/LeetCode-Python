@@ -43,15 +43,13 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        one = [0]*31
-        zero = [0]*31
-        for i in range(31):
-            for n in nums:
-                if (n >> i) & 1 == 1:
-                    one[i] += 1
-                else:
-                    zero[i] += 1
         res = 0
         for i in range(31):
-            res += one[i]*zero[i]
+            one, zero = 0, 0
+            for n in nums:
+                if (n >> i) & 1 == 1:
+                    one += 1
+                else:
+                    zero += 1
+            res += one*zero
         return res
