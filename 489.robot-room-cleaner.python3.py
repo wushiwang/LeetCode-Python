@@ -132,6 +132,6 @@ class Solution:
             robot.turnRight()
         robot.turnRight()
         robot.turnRight()
-        r = robot.move()
+        robot.move()
         robot.turnRight()
         robot.turnRight()
