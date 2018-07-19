@@ -76,7 +76,7 @@ class Solution:
         :type key: str
         :rtype: int
         """
-        dp = [[] for x in range(len(key))]
+        dp = [[] for x in range(2)]
         dic = dict()
         for i in range(len(ring)):
             if ring[i] not in dic:
@@ -86,13 +86,14 @@ class Solution:
             if ring[i] == key[0]:
                 dp[0].append((i, self.dis(0, i, len(ring))))
         for i in range(1, len(key)):
+            dp[i&1].clear()
             for j in dic[key[i]]:
                 cur, pos = math.inf, None
-                for k, v in dp[i-1]:
+                for k, v in dp[(i+1)&1]:
                     if self.dis(k, j, len(ring))+v < cur:
                         cur, pos = self.dis(k, j, len(ring))+v, j
-                dp[i].append((pos, cur))
-        return min([x[1] for x in dp[-1]])
+                dp[i&1].append((pos, cur))
+        return min([x[1] for x in dp[(len(key)+1)&1]])
 
     def dis(self, x, y, n):
         return min(x-y, n-x+y)+1 if x >= y else min(y-x, n-y+x)+1
