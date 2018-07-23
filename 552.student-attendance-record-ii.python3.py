@@ -54,6 +54,9 @@ class Solution:
         MOD = int(1e9+7)
         A, AL, AM, AP, L, M, P = 1, 0, 0, 0, 1, 0, 1
         i = 1
+        # This process can be descripted as: dp[i-1] =  Matrix * dp[i]
+        # Which means we can use matrix fast pow method to optimize it to
+        # O(lgN)
         while i < n:
             NA = (L + M + P) % MOD
             NAL = (A + AP) % MOD
