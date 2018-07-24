@@ -40,7 +40,6 @@
 # character 'a' and get "zyxcba".
 #
 #
-#
 # Note:
 #
 # The input strings will only contain lowercase letters.
