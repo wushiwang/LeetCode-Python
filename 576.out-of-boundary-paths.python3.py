@@ -32,7 +32,6 @@
 #
 #
 #
-#
 # Note:
 #
 # Once you move the ball out of boundary, you cannot move it back.
