@@ -34,7 +34,6 @@
 # The number of tasks is in the range [1, 10000].
 # The integer n is in the range [0, 100].
 #
-import collections
 
 
 class Solution(object):
@@ -45,8 +44,8 @@ class Solution(object):
         :rtype: int
         """
         cnt = collections.Counter(tasks)
-        que = collections.deque(sorted([v for k, v in cnt.items()], key=lambda x: -x))
-        k = que[0]
+        que = [v for k, v in cnt.items()]
+        k = max(que)
         p = 0
         for i in range(len(que)):
             if que[i] == k:
