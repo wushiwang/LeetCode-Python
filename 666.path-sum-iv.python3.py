@@ -67,7 +67,7 @@ class Solution:
         self.tree = [None]*((2**5)-1)
         for n in nums:
             l, p, v = n//100, (n%100)//10, n%10
-            pos = (2**(l-1)-1) + p - 1 if l != 1 else 0
+            pos = (2**(l-1)-1) + p - 1
             self.tree[pos] = v
         self.res = 0
         self.DFS(0, 0)
